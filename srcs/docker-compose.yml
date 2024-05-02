@@ -1,7 +1,12 @@
 version: "3"
   services:
     nginx:
-      image: requirements/nginx
+      build: 
+        context: requirements/nginx
+        dockerfile: Dockerfile
+      ports:
+        - "80:80"
+
     mariadb:
       image: requirements/mariadb
     wordpress:
