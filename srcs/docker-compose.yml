@@ -1,0 +1,12 @@
+version: "3"
+  services:
+    nginx:
+      image: requirements/nginx
+    mariadb:
+      image: requirements/mariadb
+    wordpress:
+      image: requirements/wordpress
+      volumes:
+        - DB: requirements/wordpress
+      ports:
+        - ""
