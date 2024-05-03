@@ -2,15 +2,14 @@ version: "3"
   services:
     nginx:
       build: 
-        context: requirements/nginx
+        context: ./requirements/nginx
         dockerfile: Dockerfile
-        image: requirements/nginx
+      image: nginx:latest
       ports:
         - "430:430"
 
     mariadb:
-      image: requirements/mariadb
+      
     wordpress:
-      image: requirements/wordpress
       volumes:
         - DB: requirements/wordpress
