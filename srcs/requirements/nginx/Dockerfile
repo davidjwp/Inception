@@ -20,4 +20,5 @@ COPY		./nginx.conf /etc/nginx/nginx.conf
 RUN		chmod 755 /var/www/html && \
 		chown -R www.data:www.data /var/www/html
 
+#run nginx when running the container
 CMD		["nginx", "-g", "deamon off;"]
