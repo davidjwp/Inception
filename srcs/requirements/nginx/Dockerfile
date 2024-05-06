@@ -1,7 +1,7 @@
 FROM		debian:buster
 #settin up all the apps 
 
-RUN		apt update -y && apt upgrade -y && apt install -y \
+RUN		apt-get update -y && apt-get upgrade -y && apt-get install -y \
 		nginx \
 		vim \
 		curl \
