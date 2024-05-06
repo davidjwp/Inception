@@ -1,9 +1,13 @@
-FROM		alpine:3.12
+FROM		debian:buster
 
-RUN		apk update && apk upgrade \
-		apk install mariadb-server \
+
+RUN		apt-get update -y && apt-get upgrade -y && apt-get install -y \
+		mariadb-server \
 		vim \
-		curl \
+		curl
 
-RUN		mysql_secure_installation 
+COPY		./conf/50-server.cnf /etc/mysql/maraidb.conf.d/50-server.cnf
+
+#RUN		service mysql start
+
 

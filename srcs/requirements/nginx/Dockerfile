@@ -15,7 +15,7 @@ RUN		mkdir -p /etc/nginx/ssl && \
 #to nginx root file and change owneship for all files to www.data
 RUN		mkdir -p /var/run/nginx
 
-COPY		./nginx.conf /etc/nginx/nginx.conf
+COPY		./conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN		mkdir -p /var/www/html && \
 		chmod 755 /var/www/html && \
