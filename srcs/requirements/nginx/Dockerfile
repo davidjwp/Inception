@@ -22,4 +22,4 @@ RUN		mkdir -p /var/www/html && \
 		chown -R www-data:www-data /var/www/html
 
 #run nginx when running the container
-#CMD		["nginx", "-g", "deamon off;"]
+CMD		["nginx", "-g", "deamon off;"]
