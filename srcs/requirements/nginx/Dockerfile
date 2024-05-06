@@ -1,7 +1,7 @@
-FROM		alpine:3.12
+FROM		debian:buster
 #settin up all the apps 
 
-RUN		apk update && apk upgrade && apk add \
+RUN		apt update -y && apt upgrade -y && apt install -y \
 		nginx \
 		vim \
 		curl \
@@ -17,8 +17,9 @@ RUN		mkdir -p /var/run/nginx
 
 COPY		./nginx.conf /etc/nginx/nginx.conf
 
-RUN		chmod 755 /var/www/html && \
-		chown -R www.data:www.data /var/www/html
+RUN		mkdir -p /var/www/html && \
+		chmod 755 /var/www/html && \
+		chown -R www-data:www-data /var/www/html
 
 #run nginx when running the container
-CMD		["nginx", "-g", "deamon off;"]
+#CMD		["nginx", "-g", "deamon off;"]

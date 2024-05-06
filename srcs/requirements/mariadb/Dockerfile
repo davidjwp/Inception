@@ -1,8 +1,9 @@
 FROM		alpine:3.12
 
 RUN		apk update && apk upgrade \
-		apk install mariadb-server-10.3 \
+		apk install mariadb-server \
 		vim \
 		curl \
 
+RUN		mysql_secure_installation 
 
