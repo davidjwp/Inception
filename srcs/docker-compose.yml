@@ -2,7 +2,7 @@ version: "3"
   services:
     nginx:
       container_build: nginx
-      wnv:.env
+      env_file:.env
       build:
         context: ./requirements/nginx
         dockerfile: Dockerfile
