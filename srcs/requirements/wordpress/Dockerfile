@@ -13,12 +13,9 @@ RUN		chown -R root:root /var/www/wordpress
 COPY		./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 #get a wordpress cli to configure manually with script
-RUN		RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+ 		chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
-#give ex permission and move to bin 
-RUN 		chmod +x wp-cli.phar
-RUN		 mv wp-cli.phar /usr/local/bin/wp
-
-COPY	./conf/auto_config.sh /
+COPY	./conf/auto-config.sh /
 
 CMD	["sh", "/auto_config.sh"]
