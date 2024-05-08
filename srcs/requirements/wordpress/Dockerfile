@@ -1,7 +1,7 @@
 FROM		debian:buster
 
 RUN		apt-get update -y && apt-get upgrade -y && apt-get install -y \
-		wget php7.3 php-fpm php-mysql mariadb-client
+		wget php7.3 php-fpm php-mysql mariadb-client sudo
 
 #download tar into /var/www and unpack it
 RUN		wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www && \
@@ -18,4 +18,4 @@ RUN		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.p
 
 COPY	./conf/auto-config.sh /
 
-CMD	["sh", "/auto_config.sh"]
+CMD	["sh", "/auto-config.sh"]
