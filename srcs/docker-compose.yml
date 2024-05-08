@@ -49,10 +49,13 @@ version: "3"
       driver_opts:
         type: 'none'
         o: 'bind'
-        device: '/home/login/data/wordpress'
+        device: '/home/debian-username/data/wordpress'
     mariadb:
       driver: local
       driver_opts:
         type: 'none'
         o: 'bind'
-        device: '/home/login/data/mariadb'
+        device: '/home/debian-username/data/mariadb'
+  networks:
+    inception:
+      driver: bridge
