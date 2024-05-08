@@ -8,7 +8,9 @@ services:
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
-    env_file: .env
+    env_file:
+      - path: .env
+        required: true    
     volumes:
       - mariadb:/var/lib/mysql
     restart: unless-stopped
@@ -25,13 +27,17 @@ services:
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
-    env_file: .env
+    env_file:
+      - path: .env
+        required: true
     ports:
       - "443:443"
     restart: on-failure
   wordpress:
     container_name: wordpress
-    env_file: .env
+    env_file:
+      - path: .env
+        required: true
     volumes:
       - wordpress:/var/www/wordpress
     networks:
