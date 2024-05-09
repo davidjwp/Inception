@@ -13,6 +13,8 @@
 all:
 	sudo docker-compose -f srcs/docker-compose.yml up -d --build
 
+re: fclean all
+
 clean:
 	sudo docker-compose -f srcs/docker-compose.yml down -v
 
