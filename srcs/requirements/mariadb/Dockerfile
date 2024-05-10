@@ -8,6 +8,8 @@ COPY		./conf/50-server.cnf /etc/mysql/maraidb.conf.d/50-server.cnf
 
 COPY		./conf/init.sh /
 
-#CMD		["sh", "/init.sh"]
+RUN		chmod -x /init.sh
+
+CMD		["bash", "/init.sh"]
 
 
