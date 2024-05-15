@@ -1,0 +1,7 @@
+sudo -s
+systemctl stop docker
+rm -rf /var/lib/docker
+systemctl start docker
+exit
+
+use this to do a clean slate on docker deleting everything

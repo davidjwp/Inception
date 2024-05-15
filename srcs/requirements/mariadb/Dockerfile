@@ -1,15 +1,18 @@
 FROM		debian:buster
 
+RUN		apt-get update -y && \
+		apt-get install -y mariadb-server procps && \
+		rm -fr /var/lib/apt/lists/*
 
-RUN		apt-get update -y && apt-get upgrade -y && apt-get install -y \
-		mariadb-server sudo
+#RUN		sudo chown -R mysql:mysql var/lib/mysql && \
+#		sudo chmod -R 755 var/lib/mysql && \
+#		sudo chown -R mysql:mysql /etc/mysql && \
+#		sudo chmod -R 755 /etc/mysql
+EXPOSE		3306
+COPY		conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY		conf/init.sh /init.sh
 
-COPY		./conf/50-server.cnf /etc/mysql/maraidb.conf.d/50-server.cnf
+RUN		chmod +x /init.sh
+#RUN		rm /init.sh
 
-COPY		./conf/init.sh /
-
-RUN		chmod -x /init.sh
-
-CMD		["bash", "/init.sh"]
-
-
+CMD		["/init.sh"]
