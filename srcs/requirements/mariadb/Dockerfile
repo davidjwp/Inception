@@ -1,18 +1,20 @@
 FROM		debian:buster
 
+ARG		SQL_DATABASE=${SQL_DATABASE}	
+ARG		SQL_USER=${SQL_USER}
+ARG		SQL_PASSWORD=${SQL_PASSWORD}
+ARG		SQL_ROOT_PASSWORD=${SQL_ROOT_PASSWORD}
+
 RUN		apt-get update -y && \
-		apt-get install -y mariadb-server procps && \
+		apt-get install -y mariadb-server vim && \
 		rm -fr /var/lib/apt/lists/*
 
-#RUN		sudo chown -R mysql:mysql var/lib/mysql && \
-#		sudo chmod -R 755 var/lib/mysql && \
-#		sudo chown -R mysql:mysql /etc/mysql && \
-#		sudo chmod -R 755 /etc/mysql
 EXPOSE		3306
+
 COPY		conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY		conf/init.sh /init.sh
+COPY		conf/init.sh /
+RUN		bash /init.sh
 
-RUN		chmod +x /init.sh
-#RUN		rm /init.sh
+RUN		rm -fr /init.sh
 
-CMD		["/init.sh"]
+CMD		["mysqld_safe"]
