@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 all:
+	sudo hostsed add 127.0.0.1 djacobs.42.fr
 	sudo docker compose -f srcs/docker-compose.yml up -d --build 
 
 re: fclean all
@@ -19,6 +20,7 @@ clean:
 	sudo docker compose -f srcs/docker-compose.yml down -v
 
 fclean: clean
+	sudo hostsed rm 127.0.0.1 djacobs.42.fr
 	sudo docker system prune -af
 
 .PHONY:	all clean fclean
