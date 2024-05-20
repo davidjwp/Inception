@@ -1,5 +1,7 @@
 FROM		debian:buster
 
+EXPOSE		3306
+
 ARG		SQL_DATABASE=${SQL_DATABASE}	
 ARG		SQL_USER=${SQL_USER}
 ARG		SQL_PASSWORD=${SQL_PASSWORD}
@@ -9,12 +11,12 @@ RUN		apt-get update -y && \
 		apt-get install -y mariadb-server vim && \
 		rm -fr /var/lib/apt/lists/*
 
-EXPOSE		3306
+RUN		rm /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY		conf/50-server.cnf /etc/mysql/mariadb.conf.d
 
-COPY		conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY		conf/init.sh /
-RUN		bash /init.sh
+COPY		tools/create_user.sh /
+RUN		bash ./create_user.sh
 
-RUN		rm -fr /init.sh
+RUN		rm -fr create_user.sh
 
 CMD		["mysqld_safe"]

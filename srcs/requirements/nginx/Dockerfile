@@ -1,25 +1,15 @@
 FROM		debian:buster
-#settin up all the apps 
 
-RUN		apt-get update -y && apt-get upgrade -y && apt-get install -y \
+RUN		apt-get update -y && apt-get install -y \
 		nginx \
-		vim \
-		curl \
-		openssl
+		openssl && \
+		rm -fr /var/lib/apt/lists/*
 
-#requesting ssl certificate
-RUN		mkdir -p /etc/nginx/ssl && \
-		openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=Paris/L=Paris/O=42/OU=42/CN=login.42.fr/UID=login" 
+COPY		./conf/nginx.conf /etc/nginx/sites-available/default
+COPY		./conf/fastcgi-php.conf /etc/snippets/fastcgi-php.conf
 
-#create nginx folder and copy the host conf file to container then give permissions
-#to nginx root file and change owneship for all files to www.data
-RUN		mkdir -p /var/run/nginx
+RUN		openssl req -x509 -days 365 -nodes -newkey rsa:4096 \
+		-keyout /etc/ssl/private/nginx.key \
+		-out /etc/ssl/certs/nginx.crt -sha256 -subj "/CN=djacobs.42.fr"
 
-COPY		./conf/nginx.conf /etc/nginx/nginx.conf
-
-RUN		mkdir -p /var/www/html && \
-		chmod 755 /var/www/html && \
-		chown -R www-data:www-data /var/www/html
-
-#run nginx when running the container
 CMD		["nginx", "-g", "daemon off;"]
