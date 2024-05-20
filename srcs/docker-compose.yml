@@ -9,18 +9,18 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-      - inception
+      - project
 
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
     env_file: .env
     volumes:
-       - wp:/var/www/html/wordpress
+      - wp:/var/www/html/wordpress
     networks:
-      - inception
+      - project
     depends_on:
-       - mariadb
+      - mariadb
 
   nginx:
     container_name: nginx
@@ -29,10 +29,9 @@ services:
     volumes:
       - wp:/var/www/html/wordpress
     networks:
-      - inception
+      - project
     depends_on:
       - wordpress
-    env_file: .env
     ports:
       - "443:443"
 
@@ -53,5 +52,5 @@ volumes:
       device: /home/${USER}/data/wp
 
 networks:
-  inception:
+  project:
     driver: bridge
