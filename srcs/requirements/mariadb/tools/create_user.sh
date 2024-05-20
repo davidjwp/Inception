@@ -1,5 +1,5 @@
 #!/bin/bash
-service mysql start;
+service mysql start
 
 mysql -u root -p"$DB__ROOT_PASSWORD" << EOF
 CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;
