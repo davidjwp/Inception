@@ -1,6 +1,6 @@
 cd /var/www/wordpress
 
-sleep 5
+sleep 10
 wp core config  --allow-root \
                 --dbhost=$DB_HOST \
                 --dbname=$DB_NAME \
