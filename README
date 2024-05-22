@@ -2,6 +2,27 @@ sudo -s
 systemctl stop docker
 rm -rf /var/lib/docker
 systemctl start docker
+sudo docker network rm $(sudo docker network ls)
 exit
 
 use this to do a clean slate on docker deleting everything
+
+to delete all users from wp database
+
+sudo docker exec -it wordpress << EOF
+cd /var/www/wordpress
+wp user delete --allow-root --network $(wp user list --allow-root)
+
+classic editor 16.3
+
+to show data in the database 
+
+mysql -u root -p"{$DB_ROOT_PASSWORD}"
+
+SHOW DATABASES;
+
+USE db-name;
+
+SHOW TABLES;
+
+SELECT * FROM $any_table LIMIT 10
