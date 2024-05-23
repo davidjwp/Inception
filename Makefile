@@ -10,9 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
+USER	= debian-username
+
 all: 
-	sudo mkdir -p /home/root/data/wp
-	sudo mkdir -p /home/root/data/db	
+	sudo mkdir -p /home/$(USER)/data/wp
+	sudo mkdir -p /home/$(USER)/data/db	
 	sudo docker compose -f srcs/docker-compose.yml up --build -d
 
 
@@ -24,7 +26,7 @@ clean:
 
 fclean: clean
 	sudo docker system prune -af --volumes
-	sudo rm -fr /home/root/data/wp/*
-	sudo rm -fr /home/root/data/db/*
+	sudo rm -fr /home/$(USER)/data/wp/*
+	sudo rm -fr /home/$(USER)/data/db/*
 
 .PHONY:	all clean fclean

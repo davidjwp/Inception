@@ -7,16 +7,15 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - db:/var/lib/mysql
+      - /home/debian-username/data/db:/var/lib/mysql
     networks:
       - project
-
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
     env_file: .env
     volumes:
-      - wp:/var/www/html/wordpress
+      - /home/debian-username/data/wp:/var/www/html/wordpress
     networks:
       - project
     depends_on:
@@ -27,14 +26,13 @@ services:
     build: ./requirements/nginx
     hostname: localhost
     volumes:
-      - wp:/var/www/html/wordpress
+      - /home/debian-username/data/wp:/var/www/html/wordpress
     networks:
       - project
     depends_on:
       - wordpress
     ports:
       - "443:443"
-
 volumes:
   db:
     name: db
@@ -42,14 +40,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/db
+      device: /home/$(USER)/data/db
   wp:
     name: wp
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/wp
+      device: /home/$(USER)/data/wp
 
 networks:
   project:
