@@ -14,8 +14,6 @@ wp core install --allow-root \
                 --admin_email=$WP_ADMIN_MAIL \
 		--url=$WP_URL
 
-wp plugin install classic-editor --activate --allow-root
-
 # Ensure the admin user is created
 if ! wp user get "$WP_ADMIN_USER" --allow-root > /dev/null 2>&1; then
     wp user create "$WP_ADMIN_USER" "$WP_ADMIN_MAIL" --allow-root --role=administrator --user_pass="$WP_ADMIN_PASSWORD"
