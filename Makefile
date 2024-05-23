@@ -10,9 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	sudo hostsed add 127.0.0.1 djacobs.42.fr
+all: 
+	sudo mkdir -p /home/root/data/wp
+	sudo mkdir -p /home/root/data/db	
 	sudo docker compose -f srcs/docker-compose.yml up --build -d
+
+
 
 re: clean all
 
@@ -20,7 +23,6 @@ clean:
 	sudo docker compose -f srcs/docker-compose.yml down -v
 
 fclean: clean
-	sudo hostsed rm 127.0.0.1 djacobs.42.fr
 	sudo docker system prune -af --volumes
 	sudo rm -fr /home/root/data/wp/*
 	sudo rm -fr /home/root/data/db/*
