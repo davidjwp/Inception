@@ -31,3 +31,30 @@ USE db-name;
 SHOW TABLES;
 
 SELECT * FROM $any_table LIMIT 10
+
+for corrections you will need to use the VM (obviously) so you need to share files between host and the vm.
+
+shut down the VM 
+
+settings->Shared folders
+
+add a folder anywhere on host it doesn't matter.
+
+you can auto mount or make permanent whatever you want but take note of the folder name.
+
+boot the VM, on VM menu Devices->insert Guest Additions CD image...
+
+if it doesn't work you'll have to install it manually go to the cd drive and 
+
+sudo sh ./VBoxLinuxAdditions.run
+
+then reboot
+
+sudo mount -t vboxsf -o uid=$(id -u),gid=$(id -g) sharename /mount/point
+
+sharename is the name of the host file and /mount/point is where on the vm you want to mount it
+
+this should work but don't blame me if it doesn't this is finiky
+
+sudo mount -t vboxsf -o uid=$(id -u),gid=$(id -g) Shared /home/debian-username/Shared
+
