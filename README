@@ -1,3 +1,9 @@
+sudo edit /etc/hosts
+add line 
+127.0.0.1	user.42.fr
+
+use this to do a clean slate on docker deleting everything
+
 sudo -s
 systemctl stop docker
 rm -rf /var/lib/docker
@@ -5,17 +11,16 @@ systemctl start docker
 sudo docker network rm $(sudo docker network ls)
 exit
 
-use this to do a clean slate on docker deleting everything
-
 to delete all users from wp database
 
 sudo docker exec -it wordpress << EOF
 cd /var/www/wordpress
 wp user delete --allow-root --network $(wp user list --allow-root)
 
-classic editor 16.3
+install classic editor 16.3 plugin if blank new-post page
 
-to show data in the database 
+
+to show data in the database
 
 mysql -u root -p"{$DB_ROOT_PASSWORD}"
 
