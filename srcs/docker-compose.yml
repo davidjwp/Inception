@@ -42,14 +42,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/debian-username/data/db
+      device: /home/${USER}/data/db
   wp:
     name: wp
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/debian-username/data/wp
+      device: /home/${USER}/data/wp
 
 networks:
   project:

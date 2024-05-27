@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bookworm
 
 EXPOSE 3306
 
@@ -15,8 +15,5 @@ RUN rm /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d
 
 COPY tools/create_user.sh /
-#RUN bash ./create_user.sh
-
-#RUN rm -rf create_user.sh
 
 CMD ["bash", "create_user.sh"]

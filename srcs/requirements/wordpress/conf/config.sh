@@ -1,12 +1,12 @@
 cd /var/www/wordpress
 
 sleep 10
+
 wp core config  --allow-root \
                 --dbhost=$DB_HOST \
                 --dbname=$DB_NAME \
                 --dbuser=$DB_USER \
                 --dbpass=$DB_PASSWORD
-
 wp core install --allow-root \
                 --title=$WP_TITLE \
                 --admin_user=$WP_ADMIN_USER \
@@ -27,4 +27,4 @@ else
         echo "User with email $WP_USER_MAIL already exists."
 fi
 cd -
-php-fpm7.3 -F
+php-fpm8.2 -F
