@@ -3,14 +3,14 @@ FROM debian:bullseye
 EXPOSE 9000
 
 RUN apt-get update && apt-get install -y \
-        php8.2-fpm \
-        php8.2-mysql \
+        php7.4-fpm \
+        php7.4-mysql \
         mariadb-client \
         curl \
         vim && \
         rm -rf /var/lib/apt/lists/*
 
-COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
 
 ADD https://wordpress.org/latest.tar.gz /var/www/latest.tar.gz
 
