@@ -29,8 +29,6 @@ wp user create $WP_USER $WP_USER_MAIL --allow-root --role=author --user_pass=$WP
 else
         echo "User with email $WP_USER_MAIL already exists."
 fi
+
+php-fpm7.4 -F
 cd -
-
-
-
-php7.4-fpm -F
