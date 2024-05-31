@@ -21,7 +21,7 @@ RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 RUN chmod +x ./usr/bin/wp
 
-RUN mkdir /run/php/php-fpm
+RUN mkdir -p /run/php/php-fpm
 
 COPY ./conf/config.sh /var/www/wordpress/config.sh
 RUN chmod +x /var/www/wordpress/config.sh
