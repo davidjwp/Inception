@@ -30,4 +30,4 @@ else
         echo "User with email $WP_USER_MAIL already exists."
 fi
 cd -
-php-fpm8.2 -F
+php-fpm7.4 -F
